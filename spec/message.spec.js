@@ -13,14 +13,17 @@ describe("Message class", function() {
         expect(new Message('Test message with null command', null).name).toBe('Test message with null command');
     });
 
-    test("constructor sets name", function(){
-        expect(new Message('contains a commands array passed into the constructor as the 2nd argument', [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE', 1400)]).commands[0].commandType).toBe('MODE_CHANGE');
-
-        expect(new Message('contains a commands array passed into the constructor as the 2nd argument', [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE', 1400)]).commands[0].value).toBe('LOW_POWER');
-
-        expect(new Message('contains a commands array passed into the constructor as the 2nd argument', [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE', 1400)]).commands[1].commandType).toBe('MOVE');
-
-        expect(new Message('contains a commands array passed into the constructor as the 2nd argument', [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE', 1400)]).commands[1].value).toBe(1400);
+    test("contains a commands array passed into the constructor as the 2nd argument", function(){
+        expect(new Message('contains a commands array passed into the constructor as the 2nd argument', [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE', 1400)]).commands).toEqual(
+        [{
+            commandType: 'MODE_CHANGE',
+            value: 'LOW_POWER'
+        },
+        {
+            commandType: 'MOVE',
+            value: 1400,
+        },
+        ]);
     });
 
 });
